@@ -111,14 +111,22 @@ BUTTON_DESCRIPTIONS: Final[tuple[HyundaiKiaButtonDescription, ...]] = (
         translation_key="turn_off_tail_lamps",
         icon="mdi:car-parking-lights",
         press_action="async_turn_off_tail_lamps",
-        exists_fn=lambda vehicle: bool(vehicle.supports_lamp_control),
+        # The apps offer lamp-off whenever the car reports the lamp alert
+        # fields; vehicles that don't publish them get no button.
+        exists_fn=lambda vehicle: (
+            bool(vehicle.supports_lamp_control)
+            and vehicle.tail_lamp_alert_is_on is not None
+        ),
     ),
     HyundaiKiaButtonDescription(
         key="turn_off_hazard_lamps",
         translation_key="turn_off_hazard_lamps",
         icon="mdi:hazard-lights",
         press_action="async_turn_off_hazard_lamps",
-        exists_fn=lambda vehicle: bool(vehicle.supports_lamp_control),
+        exists_fn=lambda vehicle: (
+            bool(vehicle.supports_lamp_control)
+            and vehicle.hazard_lamp_alert_is_on is not None
+        ),
     ),
 )
 
