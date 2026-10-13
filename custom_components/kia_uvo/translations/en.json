@@ -388,6 +388,74 @@
         "rrwindow": {
           "name": "Rear Right Window",
           "description": "Action for the rear right window"
+        },
+        "rlcurtain": {
+          "name": "Rear Left Curtain",
+          "description": "Action for the rear left window sunshade (vehicles with a rear window curtain option)"
+        },
+        "rrcurtain": {
+          "name": "Rear Right Curtain",
+          "description": "Action for the rear right window sunshade (vehicles with a rear window curtain option)"
+        }
+      }
+    },
+    "open_frunk": {
+      "name": "Open Frunk",
+      "description": "Open the front trunk (vehicles with a frunk option, CCS2 only).",
+      "fields": {
+        "device_id": {
+          "name": "Vehicle",
+          "description": "Target vehicle"
+        }
+      }
+    },
+    "set_lamp_state": {
+      "name": "Set Lamp State",
+      "description": "Turn the tail lamps and/or hazard lamps on or off, for example to switch off lamps that were left on. Leave a field empty to keep that lamp unchanged.",
+      "fields": {
+        "device_id": {
+          "name": "Vehicle",
+          "description": "Target vehicle"
+        },
+        "tail_lamp": {
+          "name": "Tail lamps",
+          "description": "On or off"
+        },
+        "hazard_lamp": {
+          "name": "Hazard lamps",
+          "description": "On or off"
+        }
+      }
+    },
+    "start_pet_care": {
+      "name": "Start Pet Care",
+      "description": "Start pet care / cabin mode at the given temperature (vehicles with the pet care service). Use Stop Climate to end it.",
+      "fields": {
+        "device_id": {
+          "name": "Vehicle",
+          "description": "Target vehicle"
+        },
+        "temperature": {
+          "name": "Temperature",
+          "description": "Cabin temperature to hold"
+        },
+        "temp_unit": {
+          "name": "Temperature unit",
+          "description": "Celsius or Fahrenheit"
+        }
+      }
+    },
+    "set_battery_conditioning": {
+      "name": "Set Battery Conditioning",
+      "description": "Start or stop EV battery conditioning (EVs with the battery preconditioning option).",
+      "fields": {
+        "device_id": {
+          "name": "Vehicle",
+          "description": "Target vehicle"
+        },
+        "enabled": {
+          "name": "Enabled",
+          "description": "Start (on) or stop (off) battery conditioning"
         }
       }
     },
@@ -736,6 +804,12 @@
       "sunroof_is_open": {
         "name": "Sunroof"
       },
+      "tail_lamp_alert_is_on": {
+        "name": "Tail Lamps Left On"
+      },
+      "hazard_lamp_alert_is_on": {
+        "name": "Hazard Lamps Left On"
+      },
       "tire_pressure_all_warning_is_on": {
         "name": "Tire Pressure - All"
       },
@@ -835,6 +909,15 @@
       },
       "capture_svm_image": {
         "name": "Capture SVM Image"
+      },
+      "open_frunk": {
+        "name": "Open Frunk"
+      },
+      "turn_off_tail_lamps": {
+        "name": "Turn Off Tail Lamps"
+      },
+      "turn_off_hazard_lamps": {
+        "name": "Turn Off Hazard Lamps"
       }
     },
     "image": {

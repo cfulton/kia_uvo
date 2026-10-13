@@ -420,6 +420,12 @@
       "sunroof_is_open": {
         "name": "Sunroof"
       },
+      "tail_lamp_alert_is_on": {
+        "name": "Tail Lamps Left On"
+      },
+      "hazard_lamp_alert_is_on": {
+        "name": "Hazard Lamps Left On"
+      },
       "tire_pressure_all_warning_is_on": {
         "name": "Tire Pressure - All"
       },
@@ -519,6 +525,15 @@
       },
       "capture_svm_image": {
         "name": "Capture SVM Image"
+      },
+      "open_frunk": {
+        "name": "Open Frunk"
+      },
+      "turn_off_tail_lamps": {
+        "name": "Turn Off Tail Lamps"
+      },
+      "turn_off_hazard_lamps": {
+        "name": "Turn Off Hazard Lamps"
       }
     },
     "image": {

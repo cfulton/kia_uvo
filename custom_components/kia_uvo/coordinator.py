@@ -656,6 +656,53 @@ class HyundaiKiaConnectDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any
             "set windows",
         )
 
+    async def async_open_frunk(self, vehicle_id: str) -> None:
+        await self._async_send_action(
+            vehicle_id,
+            lambda: self.vehicle_manager.open_frunk(vehicle_id),
+            "open frunk",
+        )
+
+    async def async_set_lamp_state(
+        self,
+        vehicle_id: str,
+        tail_lamp: bool | None = None,
+        hazard_lamp: bool | None = None,
+    ) -> None:
+        await self._async_send_action(
+            vehicle_id,
+            lambda: self.vehicle_manager.set_lamp_state(
+                vehicle_id, tail_lamp=tail_lamp, hazard_lamp=hazard_lamp
+            ),
+            "set lamp state",
+        )
+
+    async def async_turn_off_tail_lamps(self, vehicle_id: str) -> None:
+        await self.async_set_lamp_state(vehicle_id, tail_lamp=False)
+
+    async def async_turn_off_hazard_lamps(self, vehicle_id: str) -> None:
+        await self.async_set_lamp_state(vehicle_id, hazard_lamp=False)
+
+    async def async_start_pet_care(
+        self, vehicle_id: str, temperature: float, temp_unit: str = "C"
+    ) -> None:
+        await self._async_send_action(
+            vehicle_id,
+            lambda: self.vehicle_manager.start_pet_care(
+                vehicle_id, temperature, temp_unit
+            ),
+            "start pet care",
+        )
+
+    async def async_set_battery_conditioning(
+        self, vehicle_id: str, enabled: bool
+    ) -> None:
+        await self._async_send_action(
+            vehicle_id,
+            lambda: self.vehicle_manager.set_battery_conditioning(vehicle_id, enabled),
+            "set battery conditioning",
+        )
+
     async def async_set_navigation(
         self, vehicle_id: str, poi_list: list[POIInfo]
     ) -> None:

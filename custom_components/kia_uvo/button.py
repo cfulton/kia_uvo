@@ -99,6 +99,27 @@ BUTTON_DESCRIPTIONS: Final[tuple[HyundaiKiaButtonDescription, ...]] = (
         press_action="async_request_svm_capture",
         exists_fn=lambda vehicle: bool(vehicle.supports_svm),
     ),
+    HyundaiKiaButtonDescription(
+        key="open_frunk",
+        translation_key="open_frunk",
+        icon="mdi:car-lifted-pickup",
+        press_action="async_open_frunk",
+        exists_fn=lambda vehicle: bool(vehicle.supports_frunk),
+    ),
+    HyundaiKiaButtonDescription(
+        key="turn_off_tail_lamps",
+        translation_key="turn_off_tail_lamps",
+        icon="mdi:car-parking-lights",
+        press_action="async_turn_off_tail_lamps",
+        exists_fn=lambda vehicle: bool(vehicle.supports_lamp_control),
+    ),
+    HyundaiKiaButtonDescription(
+        key="turn_off_hazard_lamps",
+        translation_key="turn_off_hazard_lamps",
+        icon="mdi:hazard-lights",
+        press_action="async_turn_off_hazard_lamps",
+        exists_fn=lambda vehicle: bool(vehicle.supports_lamp_control),
+    ),
 )
 
 

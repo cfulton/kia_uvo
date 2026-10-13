@@ -311,6 +311,86 @@ set_windows:
               value: "1"
             - label: "Ventilation"
               value: "2"
+    rlcurtain:
+      required: false
+      selector:
+        select:
+          options:
+            - label: "Close"
+              value: "0"
+            - label: "Open"
+              value: "1"
+    rrcurtain:
+      required: false
+      selector:
+        select:
+          options:
+            - label: "Close"
+              value: "0"
+            - label: "Open"
+              value: "1"
+open_frunk:
+  fields:
+    device_id:
+      required: false
+      selector:
+        device:
+          integration: kia_uvo
+set_lamp_state:
+  fields:
+    device_id:
+      required: false
+      selector:
+        device:
+          integration: kia_uvo
+    tail_lamp:
+      required: false
+      selector:
+        boolean:
+    hazard_lamp:
+      required: false
+      selector:
+        boolean:
+start_pet_care:
+  fields:
+    device_id:
+      required: false
+      selector:
+        device:
+          integration: kia_uvo
+    temperature:
+      required: true
+      example: 22
+      default: 22
+      selector:
+        number:
+          min: 16
+          max: 85
+          step: 0.5
+          mode: box
+          unit_of_measurement: Degrees
+    temp_unit:
+      required: false
+      default: "C"
+      selector:
+        select:
+          options:
+            - label: "Celsius"
+              value: "C"
+            - label: "Fahrenheit"
+              value: "F"
+set_battery_conditioning:
+  fields:
+    device_id:
+      required: false
+      selector:
+        device:
+          integration: kia_uvo
+    enabled:
+      required: true
+      default: true
+      selector:
+        boolean:
 schedule_charging_and_climate:
   fields:
     device_id:

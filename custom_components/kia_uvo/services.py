@@ -39,6 +39,10 @@ SERVICE_SET_WINDOWS = "set_windows"
 SERVICE_SET_NAVIGATION = "set_navigation"
 SERVICE_SET_OFF_PEAK_CHARGING = "set_off_peak_charging"
 SERVICE_CAPTURE_SVM_IMAGE = "capture_svm_image"
+SERVICE_OPEN_FRUNK = "open_frunk"
+SERVICE_SET_LAMP_STATE = "set_lamp_state"
+SERVICE_START_PET_CARE = "start_pet_care"
+SERVICE_SET_BATTERY_CONDITIONING = "set_battery_conditioning"
 
 SUPPORTED_SERVICES = (
     SERVICE_UPDATE,
@@ -62,6 +66,10 @@ SUPPORTED_SERVICES = (
     SERVICE_SET_NAVIGATION,
     SERVICE_SET_OFF_PEAK_CHARGING,
     SERVICE_CAPTURE_SVM_IMAGE,
+    SERVICE_OPEN_FRUNK,
+    SERVICE_SET_LAMP_STATE,
+    SERVICE_START_PET_CARE,
+    SERVICE_SET_BATTERY_CONDITIONING,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -178,6 +186,8 @@ def async_setup_services(hass: HomeAssistant) -> bool:
             front_right=call.data.get("frwindow"),
             back_left=call.data.get("rlwindow"),
             back_right=call.data.get("rrwindow"),
+            rear_left_curtain=call.data.get("rlcurtain"),
+            rear_right_curtain=call.data.get("rrcurtain"),
         )
 
         if (
@@ -333,6 +343,40 @@ def async_setup_services(hass: HomeAssistant) -> bool:
         )
         await coordinator.async_set_navigation(vehicle_id, [poi])
 
+    async def async_handle_open_frunk(call: ServiceCall) -> None:
+        coordinator = _get_coordinator_from_device(hass, call)
+        vehicle_id = _get_vehicle_id_from_device(hass, call)
+        await coordinator.async_open_frunk(vehicle_id)
+
+    async def async_handle_set_lamp_state(call: ServiceCall) -> None:
+        coordinator = _get_coordinator_from_device(hass, call)
+        vehicle_id = _get_vehicle_id_from_device(hass, call)
+        tail_lamp = call.data.get("tail_lamp")
+        hazard_lamp = call.data.get("hazard_lamp")
+        if tail_lamp is None and hazard_lamp is None:
+            raise HomeAssistantError(
+                "set_lamp_state needs tail_lamp and/or hazard_lamp"
+            )
+        await coordinator.async_set_lamp_state(
+            vehicle_id, tail_lamp=tail_lamp, hazard_lamp=hazard_lamp
+        )
+
+    async def async_handle_start_pet_care(call: ServiceCall) -> None:
+        coordinator = _get_coordinator_from_device(hass, call)
+        vehicle_id = _get_vehicle_id_from_device(hass, call)
+        await coordinator.async_start_pet_care(
+            vehicle_id,
+            float(call.data["temperature"]),
+            str(call.data.get("temp_unit", "C")),
+        )
+
+    async def async_handle_set_battery_conditioning(call: ServiceCall) -> None:
+        coordinator = _get_coordinator_from_device(hass, call)
+        vehicle_id = _get_vehicle_id_from_device(hass, call)
+        await coordinator.async_set_battery_conditioning(
+            vehicle_id, bool(call.data["enabled"])
+        )
+
     async def async_handle_capture_svm_image(call: ServiceCall) -> None:
         coordinator = _get_coordinator_from_device(hass, call)
         vehicle_id = _get_vehicle_id_from_device(hass, call)
@@ -364,6 +408,10 @@ def async_setup_services(hass: HomeAssistant) -> bool:
         SERVICE_SET_NAVIGATION: async_handle_set_navigation,
         SERVICE_SET_OFF_PEAK_CHARGING: async_handle_set_off_peak_charging,
         SERVICE_CAPTURE_SVM_IMAGE: async_handle_capture_svm_image,
+        SERVICE_OPEN_FRUNK: async_handle_open_frunk,
+        SERVICE_SET_LAMP_STATE: async_handle_set_lamp_state,
+        SERVICE_START_PET_CARE: async_handle_start_pet_care,
+        SERVICE_SET_BATTERY_CONDITIONING: async_handle_set_battery_conditioning,
     }
 
     for service in SUPPORTED_SERVICES:
