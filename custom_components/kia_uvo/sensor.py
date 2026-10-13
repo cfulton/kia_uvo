@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from collections.abc import Callable
 from dataclasses import dataclass
-from datetime import date, datetime
+from datetime import date, datetime, time as dt_time
 from typing import Any, Final, cast
 
 from homeassistant.components.sensor import (
@@ -17,6 +17,7 @@ from homeassistant.components.sensor import (
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import (
+    DEGREE,
     PERCENTAGE,
     EntityCategory,
     UnitOfElectricPotential,
@@ -538,6 +539,262 @@ SENSOR_DESCRIPTIONS: Final[tuple[HyundaiKiaSensorEntityDescription, ...]] = (
         translation_key="drive_mode",
         icon="mdi:car-cog",
     ),
+    HyundaiKiaSensorEntityDescription(
+        key="steering_wheel_heat_step",
+        translation_key="steering_wheel_heat_step",
+        icon="mdi:steering",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="fine_dust_level",
+        translation_key="fine_dust_level",
+        icon="mdi:weather-dust",
+        state_class=SensorStateClass.MEASUREMENT,
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="fine_dust_state",
+        translation_key="fine_dust_state",
+        icon="mdi:weather-dust",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="air_cleaning_symbol_color",
+        translation_key="air_cleaning_symbol_color",
+        icon="mdi:palette",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="hvac_temperature_range_type",
+        translation_key="hvac_temperature_range_type",
+        icon="mdi:thermometer-lines",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="third_row_left_seat_status",
+        translation_key="third_row_left_seat_status",
+        icon="mdi:car-seat-heater",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="third_row_right_seat_status",
+        translation_key="third_row_right_seat_status",
+        icon="mdi:car-seat-heater",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="awd_controller_state_1",
+        translation_key="awd_controller_state_1",
+        icon="mdi:car-traction-control",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="awd_controller_state_2",
+        translation_key="awd_controller_state_2",
+        icon="mdi:car-traction-control",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="urea_level",
+        translation_key="urea_level",
+        icon="mdi:water-percent",
+        native_unit_of_measurement=PERCENTAGE,
+        state_class=SensorStateClass.MEASUREMENT,
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="gear_position",
+        translation_key="gear_position",
+        icon="mdi:car-shift-pattern",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="average_fuel_economy_accumulated",
+        translation_key="average_fuel_economy_accumulated",
+        icon="mdi:gas-station",
+        state_class=SensorStateClass.MEASUREMENT,
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="average_fuel_economy_drive",
+        translation_key="average_fuel_economy_drive",
+        icon="mdi:gas-station",
+        state_class=SensorStateClass.MEASUREMENT,
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="average_fuel_economy_after_refuel",
+        translation_key="average_fuel_economy_after_refuel",
+        icon="mdi:gas-station",
+        state_class=SensorStateClass.MEASUREMENT,
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="battery_12v_charging_warning_level",
+        translation_key="battery_12v_charging_warning_level",
+        icon="mdi:car-battery",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="battery_12v_power_state_alert",
+        translation_key="battery_12v_power_state_alert",
+        icon="mdi:car-battery",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="auto_cut_power_mode",
+        translation_key="auto_cut_power_mode",
+        icon="mdi:power-settings",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="auto_cut_delivery_mode",
+        translation_key="auto_cut_delivery_mode",
+        icon="mdi:power-settings",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="remote_control_waiting_time",
+        translation_key="remote_control_waiting_time",
+        icon="mdi:timer-sand",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="ota_controller_status",
+        translation_key="ota_controller_status",
+        icon="mdi:update",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="ccu_version",
+        translation_key="ccu_version",
+        icon="mdi:chip",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="location_heading",
+        translation_key="location_heading",
+        icon="mdi:compass",
+        native_unit_of_measurement=DEGREE,
+        state_class=SensorStateClass.MEASUREMENT,
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="location_speed",
+        translation_key="location_speed",
+        icon="mdi:speedometer",
+        state_class=SensorStateClass.MEASUREMENT,
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="location_altitude",
+        translation_key="location_altitude",
+        icon="mdi:elevation-rise",
+        state_class=SensorStateClass.MEASUREMENT,
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="location_service_state",
+        translation_key="location_service_state",
+        icon="mdi:crosshairs-gps",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="ev_battery_precondition_temperature_level",
+        translation_key="ev_battery_precondition_temperature_level",
+        icon="mdi:thermometer",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="ev_battery_percentage_raw",
+        translation_key="ev_battery_percentage_raw",
+        icon="mdi:battery",
+        native_unit_of_measurement=PERCENTAGE,
+        state_class=SensorStateClass.MEASUREMENT,
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="ev_charging_sequence_details",
+        translation_key="ev_charging_sequence_details",
+        icon="mdi:ev-station",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="ev_charging_sequence_subcode",
+        translation_key="ev_charging_sequence_subcode",
+        icon="mdi:ev-station",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="ev_charge_expected_start_time",
+        translation_key="ev_charge_expected_start_time",
+        icon="mdi:clock-start",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="ev_charge_expected_end_time",
+        translation_key="ev_charge_expected_end_time",
+        icon="mdi:clock-end",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="ev_driving_history_average",
+        translation_key="ev_driving_history_average",
+        icon="mdi:chart-line",
+        state_class=SensorStateClass.MEASUREMENT,
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="ev_v2g_mode",
+        translation_key="ev_v2g_mode",
+        icon="mdi:transmission-tower",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="ev_v2l_mode",
+        translation_key="ev_v2l_mode",
+        icon="mdi:power-plug",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="ev_v2l_discharge_remain_time",
+        translation_key="ev_v2l_discharge_remain_time",
+        icon="mdi:timer",
+        native_unit_of_measurement=UnitOfTime.MINUTES,
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="ev_v2l_discharge_dte",
+        translation_key="ev_v2l_discharge_dte",
+        icon="mdi:map-marker-distance",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="ev_plug_and_charge_mode",
+        translation_key="ev_plug_and_charge_mode",
+        icon="mdi:ev-plug-type2",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="ev_plug_and_charge_selected_cert",
+        translation_key="ev_plug_and_charge_selected_cert",
+        icon="mdi:certificate",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="ev_power_consumption_prediction_climate",
+        translation_key="ev_power_consumption_prediction_climate",
+        icon="mdi:air-conditioner",
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
+    HyundaiKiaSensorEntityDescription(
+        key="ev_departure_climate_temperature",
+        translation_key="ev_departure_climate_temperature",
+        icon="mdi:thermometer",
+        native_unit_of_measurement=DYNAMIC_UNIT,
+        device_class=SensorDeviceClass.TEMPERATURE,
+        entity_category=EntityCategory.DIAGNOSTIC,
+    ),
 )
 
 
@@ -636,6 +893,8 @@ class HyundaiKiaConnectSensor(RestoreSensor, SensorEntity, HyundaiKiaConnectEnti
         value = getattr(self.vehicle, self._key)
         if self._key == "ev_charging_current":
             return CHARGING_CURRENTS.get(value, None)
+        if isinstance(value, dt_time):
+            return value.isoformat(timespec="minutes")
         if self._key in ("ev_first_departure_days", "ev_second_departure_days"):
             if isinstance(value, list):
                 return ", ".join(str(d) for d in value)

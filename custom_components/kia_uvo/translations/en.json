@@ -652,6 +652,126 @@
       "drive_mode": {
         "name": "Drive Mode"
       },
+      "steering_wheel_heat_step": {
+        "name": "Steering Wheel Heat Step"
+      },
+      "fine_dust_level": {
+        "name": "Fine Dust Level"
+      },
+      "fine_dust_state": {
+        "name": "Fine Dust State"
+      },
+      "air_cleaning_symbol_color": {
+        "name": "Air Cleaning Indicator Color"
+      },
+      "hvac_temperature_range_type": {
+        "name": "HVAC Temperature Range Type"
+      },
+      "third_row_left_seat_status": {
+        "name": "Third Row Left Seat"
+      },
+      "third_row_right_seat_status": {
+        "name": "Third Row Right Seat"
+      },
+      "awd_controller_state_1": {
+        "name": "AWD Controller State 1"
+      },
+      "awd_controller_state_2": {
+        "name": "AWD Controller State 2"
+      },
+      "urea_level": {
+        "name": "Urea Level"
+      },
+      "gear_position": {
+        "name": "Gear Position"
+      },
+      "average_fuel_economy_accumulated": {
+        "name": "Average Fuel Economy Accumulated"
+      },
+      "average_fuel_economy_drive": {
+        "name": "Average Fuel Economy Drive"
+      },
+      "average_fuel_economy_after_refuel": {
+        "name": "Average Fuel Economy After Refuel"
+      },
+      "battery_12v_charging_warning_level": {
+        "name": "12V Battery Charging Warning Level"
+      },
+      "battery_12v_power_state_alert": {
+        "name": "12V Battery Power State Alert"
+      },
+      "auto_cut_power_mode": {
+        "name": "Auto Cut Power Mode"
+      },
+      "auto_cut_delivery_mode": {
+        "name": "Auto Cut Delivery Mode"
+      },
+      "remote_control_waiting_time": {
+        "name": "Remote Control Waiting Time"
+      },
+      "ota_controller_status": {
+        "name": "OTA Controller Status"
+      },
+      "ccu_version": {
+        "name": "CCU Version"
+      },
+      "location_heading": {
+        "name": "Heading"
+      },
+      "location_speed": {
+        "name": "Speed"
+      },
+      "location_altitude": {
+        "name": "Altitude"
+      },
+      "location_service_state": {
+        "name": "Location Service State"
+      },
+      "ev_battery_precondition_temperature_level": {
+        "name": "EV Battery Preconditioning Temperature Level"
+      },
+      "ev_battery_percentage_raw": {
+        "name": "EV Battery Raw"
+      },
+      "ev_charging_sequence_details": {
+        "name": "EV Charging Sequence Details"
+      },
+      "ev_charging_sequence_subcode": {
+        "name": "EV Charging Sequence Subcode"
+      },
+      "ev_charge_expected_start_time": {
+        "name": "EV Charge Expected Start"
+      },
+      "ev_charge_expected_end_time": {
+        "name": "EV Charge Expected End"
+      },
+      "ev_driving_history_average": {
+        "name": "EV Driving History Average"
+      },
+      "ev_v2g_mode": {
+        "name": "Vehicle to Grid Mode"
+      },
+      "ev_v2l_mode": {
+        "name": "Vehicle to Load Mode"
+      },
+      "ev_v2l_discharge_remain_time": {
+        "name": "V2L Discharge Remaining Time"
+      },
+      "ev_v2l_discharge_dte": {
+        "name": "V2L Discharge Range"
+      },
+      "ev_plug_and_charge_mode": {
+        "name": "Plug and Charge Mode"
+      },
+      "ev_plug_and_charge_selected_cert": {
+        "name": "Plug and Charge Selected Certificate"
+      },
+      "ev_power_consumption_prediction_climate": {
+        "name": "EV Predicted Climate Consumption"
+      },
+      "ev_departure_climate_temperature": {
+        "name": "Departure Climate Temperature"
+      },
       "svm_status": {
         "name": "SVM Status"
       }
@@ -809,6 +929,87 @@
       },
       "hazard_lamp_alert_is_on": {
         "name": "Hazard Lamps Left On"
+      },
+      "windshield_front_heater_is_on": {
+        "name": "Front Windshield Heater"
+      },
+      "lights_discharge_alert_is_on": {
+        "name": "Lights Discharge Alert"
+      },
+      "turn_signal_left_front_is_on": {
+        "name": "Left Turn Signal"
+      },
+      "turn_signal_right_front_is_on": {
+        "name": "Right Turn Signal"
+      },
+      "frunk_fault_is_on": {
+        "name": "Frunk Fault"
+      },
+      "air_cleaning_is_on": {
+        "name": "Air Cleaning"
+      },
+      "rest_mode_is_on": {
+        "name": "Rest Mode"
+      },
+      "front_left_armrest_heater_is_on": {
+        "name": "Front Left Armrest Heater"
+      },
+      "front_right_armrest_heater_is_on": {
+        "name": "Front Right Armrest Heater"
+      },
+      "rear_left_armrest_heater_is_on": {
+        "name": "Rear Left Armrest Heater"
+      },
+      "rear_right_armrest_heater_is_on": {
+        "name": "Rear Right Armrest Heater"
+      },
+      "drivetrain_driving_ready": {
+        "name": "Drivetrain Ready"
+      },
+      "transmission_in_park": {
+        "name": "Transmission In Park"
+      },
+      "auto_cut_battery_prewarning_on": {
+        "name": "12V Battery Auto Cut Pre-Warning"
+      },
+      "ignition1_on": {
+        "name": "Ignition 1"
+      },
+      "remote_control_available": {
+        "name": "Remote Control Available"
+      },
+      "active_alert_available": {
+        "name": "Active Alert Available"
+      },
+      "ev_battery_conditioning_is_on": {
+        "name": "EV Battery Conditioning Active"
+      },
+      "ev_driving_ready": {
+        "name": "EV Driving Ready"
+      },
+      "ev_driving_range_invalid": {
+        "name": "EV Range Invalid"
+      },
+      "ev_plug_and_charge_changeable": {
+        "name": "Plug and Charge Changeable"
+      },
+      "ev_charge_complete_alarm_before_10min": {
+        "name": "Charge Complete Alarm 10 min"
+      },
+      "ev_charge_complete_alarm_before_20min": {
+        "name": "Charge Complete Alarm 20 min"
+      },
+      "ev_charge_complete_alarm_before_30min": {
+        "name": "Charge Complete Alarm 30 min"
+      },
+      "ev_charge_complete_alarm_off": {
+        "name": "Charge Complete Alarm Off"
+      },
+      "ev_departure_climate_enabled": {
+        "name": "Departure Climate Enabled"
+      },
+      "ev_departure_climate_defrost": {
+        "name": "Departure Climate Defrost"
       },
       "tire_pressure_all_warning_is_on": {
         "name": "Tire Pressure - All"
